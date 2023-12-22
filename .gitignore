@@ -1,0 +1,8 @@
+__pycache__
+model_ver2.0.pth
+.DS_Store
+sql_app.db
+sample.py
+sample2.py
+Images
+.env

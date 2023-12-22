@@ -20,7 +20,6 @@ def pred(url: str, headers: str, image_path: str):
 
             files = {'upload_file': (uploaded_file.name, uploaded_file.read(), uploaded_file.type)}
             res = requests.post(url=url, files=files, headers=headers)
-            st.write(res.status_code)
             result = res.json()
 
             image_path = os.path.join(image_path, uploaded_file.name)
