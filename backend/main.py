@@ -51,7 +51,7 @@ def user_create(user: sq.schemas.UserCreate, db: Session = Depends(dps.get_db)):
     return sq.crud.create_user(db=db, user=user)
 
 @app.get("/users/get/info/", response_model=List[sq.schemas.User], tags=['Users'])
-async def users_ifno(skip: int = 0, limit: int = 100, db: Session = Depends(dps.get_db)):
+def users_ifno(skip: int = 0, limit: int = 100, db: Session = Depends(dps.get_db)):
     users = sq.crud.get_users(db, skip=skip, limit=limit)
     return users
 
