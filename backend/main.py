@@ -43,11 +43,11 @@ app.include_router(auth.router)
 
 # 通信の確認
 @app.get('/')
-async def conect_check():
+def conect_check():
     return {'message':'Success!',}
 
 @app.post("/users/create/", response_model=sq.schemas.User, tags=['Users'])
-async def user_create(user: sq.schemas.UserCreate, db: Session = Depends(dps.get_db)):
+def user_create(user: sq.schemas.UserCreate, db: Session = Depends(dps.get_db)):
     return sq.crud.create_user(db=db, user=user)
 
 @app.get("/users/get/info/", response_model=List[sq.schemas.User], tags=['Users'])
