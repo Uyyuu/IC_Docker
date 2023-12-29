@@ -26,7 +26,7 @@
 
 1. リポジトリをクローンする
    ```bash
-   git clone https://github.com/Uyyuu/IC_Docker-DB.git
+   git clone https://github.com/Uyyuu/IC_Docker.git
    ```
 2. dockerを起動
    ```bash
