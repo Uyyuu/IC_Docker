@@ -67,7 +67,7 @@ def pred_register(db: Session, pred: str, image_path: str, user_id: int, caption
     return register_data
 
 @app.post("/predictions/get/histories/", response_model=List[sq.schemas.PredResult], tags=['Predicitions'])
-async def get_pred_history(get_pred: sq.schemas.GetPredResult, db: Session = Depends(dps.get_db)):
+def get_pred_history(get_pred: sq.schemas.GetPredResult, db: Session = Depends(dps.get_db)):
     return sq.crud.get_pred_results_by_user_id(db, user_id=get_pred.user_id, skip=get_pred.start_number, limit=get_pred.data_num)
     
 
