@@ -45,7 +45,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-async def get_current_user(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
+def get_current_user(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -65,7 +65,7 @@ async def get_current_user(db: Session = Depends(get_db), token: str = Depends(o
     return user
 
 @router.post("/login/", response_model=Token, tags=['Login'])
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     user = authenticate_user(username=form_data.username, password=form_data.password, db=db)
     if not user:
         raise HTTPException(
@@ -80,9 +80,9 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     return {"access_token": access_token, "token_type": "bearer"}
 
 @router.get("/users/get/user_id/", tags=['Users'])
-async def read_own_items(current_user: User = Depends(get_current_user)):
+def read_own_items(current_user: User = Depends(get_current_user)):
     return {"user_id": current_user.user_id}
 
 @router.get("/login/", tags=['Login'])
-async def read_items(token: Annotated[str, Depends(oauth2_scheme)], tags=['Login']):
+def read_items(token: Annotated[str, Depends(oauth2_scheme)], tags=['Login']):
     return {"token": token}
