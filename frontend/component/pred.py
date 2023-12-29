@@ -55,7 +55,7 @@ def pred_result(url: str, headers: str):
             )
             if res.status_code == 200:
                 st.success('予測履歴を取得して表示')
-                st.json(res.json())
+                # st.json(res.json())
 
             return res
 
