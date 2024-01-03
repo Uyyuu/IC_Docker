@@ -34,3 +34,8 @@
    ```
 3. アプリにアクセス
 　　http://localhost:8501/
+
+## デモ動画
+https://github.com/Uyyuu/IC_Docker/assets/131258493/9f81d164-e935-4aaa-9726-9898ec37c721
+
+
